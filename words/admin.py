@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from words.models import Word
+from words.models import Word, WordGrouping
 
 
 class WordAdmin(admin.ModelAdmin):
@@ -13,3 +13,10 @@ class WordAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Word, WordAdmin)
+
+
+class WordGroupingAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(WordGrouping, WordGroupingAdmin)
