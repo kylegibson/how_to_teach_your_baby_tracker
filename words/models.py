@@ -12,3 +12,6 @@ class Word(models.Model):
         if self.date_retired:
             return False
         return bool(self.date_active)
+
+    def __unicode__(self):
+        return self.word
