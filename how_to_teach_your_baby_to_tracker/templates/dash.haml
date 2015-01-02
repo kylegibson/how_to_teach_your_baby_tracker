@@ -33,7 +33,7 @@
                                     href: '{% url "words:mark_group_viewed" group.id %}',
                                 }
                                     Mark All
-                            - for word in group.words.all
+                            - for word in group.active_words
                                 .col-md-2.item
                                     %a.btn.btn-default.btn-block{
                                         href: '{% url "words:mark_word_viewed" word.id %}',
