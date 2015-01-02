@@ -23,6 +23,12 @@ SECRET_KEY = '!mw3j6@b&_-59u57n-_)-a@ei8l@vtd!slmr7h3sth1yqsm9c2'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
+TEMPLATE_LOADERS = (
+    'hamlpy.template.loaders.HamlPyFilesystemLoader',
+    'hamlpy.template.loaders.HamlPyAppDirectoriesLoader',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader'
+)
 
 ALLOWED_HOSTS = []
 
@@ -36,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'how_to_teach_your_baby_to_tracker',
     'words',
 )
 

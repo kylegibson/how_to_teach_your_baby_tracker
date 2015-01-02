@@ -1,0 +1,27 @@
+- extends 'base.haml'
+
+- block extrahead
+    :css
+        @media (max-width: 480px) {
+            .item {
+                padding: 0.5em;
+            }
+        }
+
+
+- block body
+    .words
+        - for group in word_groups
+            .panel.panel-default
+                .panel-heading
+                    Word Group
+                    {{ group.id }}
+                .panel-body
+                    .row
+                        .col-md-1.item
+                            %button.btn.btn-primary.btn-block
+                                Mark All
+                        - for word in group.words.all
+                            .col-md-1.item
+                                %button.btn.btn-default.btn-block
+                                    {{ word }}
