@@ -9,6 +9,7 @@ class WordAdmin(admin.ModelAdmin):
         'views',
         'date_active',
         'date_retired',
+        'grouping',
     ]
 
 
