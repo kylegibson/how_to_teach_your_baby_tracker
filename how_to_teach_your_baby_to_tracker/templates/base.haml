@@ -22,4 +22,18 @@
         src: '//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js',
         type: 'text/javascript',
     }
+    :javascript
+        $(function() {
+            $('body').on('click', '[rel=ajax-post]', function(e) {
+                e.preventDefault();
+                var params = {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                };
+                var $button = $(e.currentTarget);
+                var url = $button.attr('href');
+                $.post(url, params, function(data) {
+                    $button.prop('disable', true);
+                });
+            });
+        });
     - block final-inline-script

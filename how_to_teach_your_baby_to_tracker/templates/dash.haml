@@ -31,11 +31,13 @@
                             .col-md-2.item
                                 %a.btn.btn-primary.btn-block{
                                     href: '{% url "words:mark_group_viewed" group.id %}',
+                                    rel: 'ajax-post',
                                 }
                                     Mark All
                             - for word in group.active_words
                                 .col-md-2.item
                                     %a.btn.btn-default.btn-block{
                                         href: '{% url "words:mark_word_viewed" word.id %}',
+                                        rel: 'ajax-post',
                                     }
                                         {{ word }}
