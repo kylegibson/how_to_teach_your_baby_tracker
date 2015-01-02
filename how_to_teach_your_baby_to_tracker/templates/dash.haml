@@ -7,25 +7,35 @@
                 padding: 0.5em;
             }
         }
+        .panel-heading{
+            cursor: pointer;
+        }
 
 
 - block body
-    .words
+    #words.panel-group
         - for group in word_groups
             .panel.panel-default
-                .panel-heading
+                .panel-heading{
+                    data-toggle: 'collapse',
+                    data-parent: '#words',
+                    data-target: '#word_group_{{ group.id }}',
+                }
                     Word Group
                     {{ group.id }}
-                .panel-body
-                    .row
-                        .col-md-2.item
-                            %a.btn.btn-primary.btn-block{
-                                href: '{% url "words:mark_group_viewed" group.id %}',
-                            }
-                                Mark All
-                        - for word in group.words.all
+                .panel-collapse.collapse{
+                    id: 'word_group_{{ group.id }}',
+                }
+                    .panel-body
+                        .row
                             .col-md-2.item
-                                %a.btn.btn-default.btn-block{
-                                    href: '{% url "words:mark_word_viewed" word.id %}',
+                                %a.btn.btn-primary.btn-block{
+                                    href: '{% url "words:mark_group_viewed" group.id %}',
                                 }
-                                    {{ word }}
+                                    Mark All
+                            - for word in group.words.all
+                                .col-md-2.item
+                                    %a.btn.btn-default.btn-block{
+                                        href: '{% url "words:mark_word_viewed" word.id %}',
+                                    }
+                                        {{ word }}
