@@ -32,7 +32,7 @@
                 var $button = $(e.currentTarget);
                 var url = $button.attr('href');
                 $.post(url, params, function(data) {
-                    $button.prop('disable', true);
+                    $button.addClass('disabled');
                 });
             });
         });
