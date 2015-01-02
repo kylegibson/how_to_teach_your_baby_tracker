@@ -18,10 +18,14 @@
                     {{ group.id }}
                 .panel-body
                     .row
-                        .col-md-1.item
-                            %button.btn.btn-primary.btn-block
+                        .col-md-2.item
+                            %a.btn.btn-primary.btn-block{
+                                href: '{% url "words:mark_group_viewed" group.id %}',
+                            }
                                 Mark All
                         - for word in group.words.all
-                            .col-md-1.item
-                                %button.btn.btn-default.btn-block
+                            .col-md-2.item
+                                %a.btn.btn-default.btn-block{
+                                    href: '{% url "words:mark_word_viewed" word.id %}',
+                                }
                                     {{ word }}
