@@ -19,7 +19,7 @@ class WordGrouping(models.Model):
 
 
 class Word(models.Model):
-    word = models.CharField(max_length=255)
+    word = models.CharField(max_length=255, unique=True)
     date_retired = models.DateTimeField(null=True, blank=True)
     date_active = models.DateTimeField(null=True, blank=True)
     views = models.IntegerField(default=0)
