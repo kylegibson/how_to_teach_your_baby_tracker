@@ -32,7 +32,30 @@
                     .panel-body
                         .row
                             .col-md-2.item
-                                - if not manage
+                                - if manage
+                                    %form{
+                                        method: 'post',
+                                        action: '{% url "words:add_to_group" %}',
+                                    }
+                                        - csrf_token
+                                        %input{
+                                            type: 'hidden',
+                                            name: 'group_id',
+                                            value: '{{ group.id }}',
+                                        }
+                                        .form-group
+                                            %select.form-control.input-sm{
+                                                name: 'word_id',
+                                            }
+                                                %option
+                                                - for word in available_words
+                                                    %option{value: '{{ word.0 }}'}
+                                                        {{ word.1 }}
+                                        %button.btn.btn-primary.btn-block{
+                                            type: 'submit',
+                                        }
+                                            Add
+                                - else
                                     %a.btn.btn-primary.btn-block{
                                         href: '{% url "words:mark_group_viewed" group.id %}',
                                         rel: 'ajax-post',

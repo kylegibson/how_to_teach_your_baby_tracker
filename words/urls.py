@@ -17,4 +17,9 @@ urlpatterns = patterns(
         'words.views.mark_group_viewed',
         name='mark_group_viewed',
     ),
+    url(
+        r'add_to_group/$',
+        'words.views.add_to_group',
+        name='add_to_group',
+    ),
 )
