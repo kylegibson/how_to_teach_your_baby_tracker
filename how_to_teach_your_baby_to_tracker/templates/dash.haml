@@ -21,8 +21,7 @@
                     data-parent: '#words',
                     data-target: '#word_group_{{ group.id }}',
                 }
-                    Word Group
-                    {{ group.id }}
+                    [{{ group.active_words|join:', ' }}]
                 .panel-collapse.collapse{
                     id: 'word_group_{{ group.id }}',
                 }
