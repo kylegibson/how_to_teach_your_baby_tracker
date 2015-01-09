@@ -14,3 +14,14 @@ class DashView(TemplateView):
         )
 
 dash = DashView.as_view()
+
+
+class ManageView(DashView):
+    def get_context_data(self):
+        word_groups = WordGrouping.objects.select_related('words')
+        return dict(
+            word_groups=word_groups,
+            manage=True,
+        )
+
+manage = ManageView.as_view()

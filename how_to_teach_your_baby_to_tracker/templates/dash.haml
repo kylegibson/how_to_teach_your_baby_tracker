@@ -13,6 +13,10 @@
 
 
 - block body
+    - if manage
+        %h1
+            Manage mode
+
     #words.panel-group
         - for group in word_groups
             .panel.panel-default
@@ -28,16 +32,31 @@
                     .panel-body
                         .row
                             .col-md-2.item
-                                %a.btn.btn-primary.btn-block{
-                                    href: '{% url "words:mark_group_viewed" group.id %}',
-                                    rel: 'ajax-post',
-                                }
-                                    Mark All
-                            - for word in group.active_words
-                                .col-md-2.item
-                                    %a.btn.btn-default.btn-block{
-                                        href: '{% url "words:mark_word_viewed" word.id %}',
+                                - if not manage
+                                    %a.btn.btn-primary.btn-block{
+                                        href: '{% url "words:mark_group_viewed" group.id %}',
                                         rel: 'ajax-post',
                                     }
-                                        {{ word }}
-                                        ({{ word.views }})
+                                        Mark All
+                            - for word in group.active_words
+                                .col-md-2.item
+                                    - if manage
+                                        %a.btn.btn-default.btn-block{
+                                            href: '{% url "words:mark_word_retired" word.id %}',
+                                            rel: 'ajax-post',
+                                        }
+                                            Retire "{{ word }}"
+                                            ({{ word.views }})
+                                    - else
+                                        %a.btn.btn-default.btn-block{
+                                            href: '{% url "words:mark_word_viewed" word.id %}',
+                                            rel: 'ajax-post',
+                                        }
+                                            {{ word }}
+                                            ({{ word.views }})
+    - if manage
+        %a.btn.btn-primary.btn-block{href:'{% url "dash" %}'}
+            Dash
+    - else
+        %a.btn.btn-primary.btn-block{href:'{% url "manage" %}'}
+            Manage
